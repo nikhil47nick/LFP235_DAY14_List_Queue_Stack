@@ -8,12 +8,33 @@ public class LinkedList {
     void add(int data){
         List ls = new List();
         ls.data = data;
+        List n = head,prev = null;
+
         if(isEmpty()){
-            head = ls;
+            ls = head;
         }else{
-            ls.next = head;
-            head = ls;
+            for (int i=0;i<size();i++) {
+                prev = n;
+                if(n.data < data) {
+                    ls.next =n.next;
+                    n.next = ls;
+                }else{
+                    if(prev !=null) {
+                        ls.next = prev.next;
+                        prev.next = ls;
+                    }else{
+                        ls.next =n;
+                        ls = head;
+                    }
+                }
+
+                n=n.next;
+            }
         }
+
+
+
+
         count++;
     }
 
@@ -49,21 +70,7 @@ public class LinkedList {
     }
 
 
-    void append(int data){
-        List n = new List();
-        n.data = data;
-        List ls =head;
-        if(isEmpty()){
-            head = ls;
-        }else{
-            while(ls.next != null) {
-            ls=ls.next;
-            }
-            ls.next = n;
-        }
-        count++;
 
-    }
 
     int index(int data){
         List n=head;
@@ -76,19 +83,6 @@ public class LinkedList {
         return -1;
     }
 
-    void insert(int pos,int data){
-        List ls = new List();
-        List n=head,prev=null;
-        for(int i=0;i<pos;i++){
-            prev=n;
-            n=n.next;
-        }
-        if (prev !=null) {
-            ls.next = prev.next;
-            prev.next = ls;
-        }else{add(ls.data);}
-        count++;
-    }
 
     int pop(){
         List n,prev = null;
