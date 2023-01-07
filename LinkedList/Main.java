@@ -4,12 +4,18 @@ public class Main {
     public static void main(String[] args) {
         LinkedList link = new LinkedList();
         link.add(56);
-        link.append(70);
-        link.insert(2,30);
+        link.display();
+        System.out.println("");
+        link.add(90);
+        link.display();
+        System.out.println("");
+        link.add(20);
+        link.display();
+        System.out.println("");
+        link.add(30);
+        link.display();
+        System.out.println("");
         link.remove(56);
-
-        link.insert(link.index(30),40);
-        link.sortList();
-
+        link.display();
     }
 }
