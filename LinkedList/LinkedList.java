@@ -3,38 +3,33 @@ package com.bridgelabz.Day14.LinkedList;
 public class LinkedList {
 
     List head;
-    int count;
+    int count=0;
 
     void add(int data){
         List ls = new List();
         ls.data = data;
         List n = head,prev = null;
 
-        if(isEmpty()){
-            ls = head;
-        }else{
-            for (int i=0;i<size();i++) {
+        if(!isEmpty()){
+            while (  n.data < data) {
                 prev = n;
-                if(n.data < data) {
-                    ls.next =n.next;
-                    n.next = ls;
+                if(n.next != null) {
+                    n = n.next;
                 }else{
-                    if(prev !=null) {
-                        ls.next = prev.next;
-                        prev.next = ls;
-                    }else{
-                        ls.next =n;
-                        ls = head;
-                    }
+                    break;
                 }
-
-                n=n.next;
             }
+            if(prev != null){
+                ls.next = prev.next;
+                prev.next = ls;
+            }else {
+                ls.next = n;
+                head = ls;
+            }
+
+        }else{
+            head = ls;
         }
-
-
-
-
         count++;
     }
 
@@ -57,7 +52,6 @@ public class LinkedList {
             System.out.println("List is Empty");
         }
     }
-
     boolean search(int data){
         List n=head;
         for(int i=0;i<size();i++){
@@ -68,10 +62,6 @@ public class LinkedList {
         }
         return false;
     }
-
-
-
-
     int index(int data){
         List n=head;
         for(int i=0;i<size();i++){
@@ -82,8 +72,6 @@ public class LinkedList {
         }
         return -1;
     }
-
-
     int pop(){
         List n,prev = null;
         n=head;
@@ -104,6 +92,13 @@ public class LinkedList {
     }
     int size(){
         return count;
+    }
+    void display(){
+        List n=head;
+        for(int i=0;i<size();i++) {
+            System.out.println(n.data);
+            n=n.next;
+        }
     }
 
 
